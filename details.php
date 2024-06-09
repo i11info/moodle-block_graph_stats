@@ -59,7 +59,7 @@ if (has_capability('report/log:view', $context)) {
     if ($COURSE->id > 1) {
         $query = "
             SELECT DISTINCT
-                u.id, " . get_all_user_name_fields(true, 'u') . "
+                u.id, " . \core_user\fields::for_name()->get_sql('u', false, '', '', false)->selects . "
             FROM
                 {logstore_standard_log} l, {user} u
             WHERE
@@ -76,7 +76,7 @@ if (has_capability('report/log:view', $context)) {
     } else {
         $query = "
             SELECT DISTINCT
-                u.id, " . get_all_user_name_fields(true, 'u') . "
+                u.id, " . \core_user\fields::for_name()->get_sql('u', false, '', '', false)->selects . "
             FROM
                 {logstore_standard_log} l, {user} u
             WHERE
